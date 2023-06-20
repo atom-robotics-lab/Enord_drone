@@ -1,0 +1,6 @@
+<launch>
+	<!-- Include the MAVROS node with SITL and Gazebo -->
+	<include file="$(find px4)/launch/mavros_posix_sitl.launch">
+	<arg name="world" default="$(find airbase_world)/worlds/airbase.world"/>
+	</include>
+</launch>
