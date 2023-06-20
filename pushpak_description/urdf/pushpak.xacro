@@ -1,0 +1,144 @@
+<?xml version="1.0" ?>
+<robot name="pushpak" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find pushpak_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find pushpak_description)/urdf/pushpak.trans" />
+<xacro:include filename="$(find pushpak_description)/urdf/pushpak.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.001942950722952741 -0.024974685511653466 0.007216496908540022" rpy="0 0 0"/>
+    <mass value="11.064035265340497"/>
+    <inertia ixx="0.202255" iyy="0.170695" izz="0.332599" ixy="0.000373" iyz="-0.013783" ixz="0.001147"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="forward_left_1">
+  <inertial>
+    <origin xyz="-0.002505280291919376 -0.3823560019451502 0.30790404368099017" rpy="0 0 0"/>
+    <mass value="0.15654580757612968"/>
+    <inertia ixx="0.000974" iyy="0.000529" izz="0.001502" ixy="-0.000708" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.32212 -0.130761 0.234963" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/forward_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.32212 -0.130761 0.234963" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/forward_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="backward_left_1">
+  <inertial>
+    <origin xyz="-0.004995667566764617 0.1380795873037407 -0.20496410578934204" rpy="0 0 0"/>
+    <mass value="0.15654580757612968"/>
+    <inertia ixx="0.001094" iyy="0.00041" izz="0.001502" ixy="-0.000659" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.319 -0.126098 -0.28081" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/backward_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.319 -0.126098 -0.28081" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/backward_left_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="backward_right_1">
+  <inertial>
+    <origin xyz="-0.285586223587076 0.6542112237795904 -0.19869795631900966" rpy="0 0 0"/>
+    <mass value="0.15654580757612968"/>
+    <inertia ixx="0.000974" iyy="0.000529" izz="0.001502" ixy="-0.000708" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.032424 0.399205 -0.271639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/backward_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.032424 0.399205 -0.271639" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/backward_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="forward_right_1">
+  <inertial>
+    <origin xyz="-0.2856986275549862 0.142731515223033 0.3138083502135488" rpy="0 0 0"/>
+    <mass value="0.15654580757612968"/>
+    <inertia ixx="0.001094" iyy="0.00041" izz="0.001502" ixy="-0.000659" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.029823 0.397951 0.238587" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/forward_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.029823 0.397951 0.238587" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://pushpak_description/meshes/forward_right_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolute 14" type="revolute">
+  <origin xyz="0.32212 0.130761 -0.234963" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="forward_left_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="6.283185" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute 15" type="revolute">
+  <origin xyz="0.319 0.126098 0.28081" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="backward_left_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="6.283185" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute 16" type="revolute">
+  <origin xyz="-0.032424 -0.399205 0.271639" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="backward_right_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="6.283185" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+<joint name="Revolute 17" type="revolute">
+  <origin xyz="-0.029823 -0.397951 -0.238587" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="forward_right_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+  <limit upper="6.283185" lower="0.0" effort="100" velocity="100"/>
+</joint>
+
+</robot>

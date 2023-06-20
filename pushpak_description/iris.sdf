@@ -1,0 +1,332 @@
+<sdf version='1.7'>
+  <model name='pushpak'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.001943 -0.024975 0.007216 0 -0 0</pose>
+        <mass>11.064</mass>
+        <inertia>
+          <ixx>0.202255</ixx>
+          <ixy>0.000373</ixy>
+          <ixz>0.001147</ixz>
+          <iyy>0.170695</iyy>
+          <iyz>-0.013783</iyz>
+          <izz>0.332599</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Silver</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='Revolute 14' type='revolute'>
+      <pose relative_to='base_link'>0.32212 0.130761 -0.234963 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>forward_left_1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>6.28318</upper>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='forward_left_1'>
+      <pose relative_to='Revolute 14'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.002505 -0.382356 0.307904 0 -0 0</pose>
+        <mass>0.156546</mass>
+        <inertia>
+          <ixx>0.000974</ixx>
+          <ixy>-0.000708</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000529</iyy>
+          <iyz>0</iyz>
+          <izz>0.001502</izz>
+        </inertia>
+      </inertial>
+      <collision name='forward_left_1_collision'>
+        <pose>-0.32212 -0.130761 0.234963 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='forward_left_1_visual'>
+        <pose>-0.32212 -0.130761 0.234963 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Silver</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Revolute 15' type='revolute'>
+      <pose relative_to='base_link'>0.319 0.126098 0.28081 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>backward_left_1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>6.28318</upper>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='backward_left_1'>
+      <pose relative_to='Revolute 15'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.004996 0.13808 -0.204964 0 -0 0</pose>
+        <mass>0.156546</mass>
+        <inertia>
+          <ixx>0.001094</ixx>
+          <ixy>-0.000659</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00041</iyy>
+          <iyz>0</iyz>
+          <izz>0.001502</izz>
+        </inertia>
+      </inertial>
+      <collision name='backward_left_1_collision'>
+        <pose>-0.319 -0.126098 -0.28081 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='backward_left_1_visual'>
+        <pose>-0.319 -0.126098 -0.28081 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Silver</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Revolute 16' type='revolute'>
+      <pose relative_to='base_link'>-0.032424 -0.399205 0.271639 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>backward_right_1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>6.28318</upper>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='backward_right_1'>
+      <pose relative_to='Revolute 16'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.285586 0.654211 -0.198698 0 -0 0</pose>
+        <mass>0.156546</mass>
+        <inertia>
+          <ixx>0.000974</ixx>
+          <ixy>-0.000708</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000529</iyy>
+          <iyz>0</iyz>
+          <izz>0.001502</izz>
+        </inertia>
+      </inertial>
+      <collision name='backward_right_1_collision'>
+        <pose>0.032424 0.399205 -0.271639 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='backward_right_1_visual'>
+        <pose>0.032424 0.399205 -0.271639 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_ccw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Silver</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <joint name='Revolute 17' type='revolute'>
+      <pose relative_to='base_link'>-0.029823 -0.397951 -0.238587 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>forward_right_1</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>6.28318</upper>
+          <effort>100</effort>
+          <velocity>100</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='forward_right_1'>
+      <pose relative_to='Revolute 17'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.285699 0.142732 0.313808 0 -0 0</pose>
+        <mass>0.156546</mass>
+        <inertia>
+          <ixx>0.001094</ixx>
+          <ixy>-0.000659</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00041</iyy>
+          <iyz>0</iyz>
+          <izz>0.001502</izz>
+        </inertia>
+      </inertial>
+      <collision name='forward_right_1_collision'>
+        <pose>0.029823 0.397951 0.238587 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.2</mu>
+              <mu2>0.2</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='forward_right_1_visual'>
+        <pose>0.029823 0.397951 0.238587 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.001 0.001 0.001</scale>
+            <uri>model://iris/meshes/iris_prop_cw.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Silver</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <self_collide>1</self_collide>
+    </link>
+    <plugin name='control' filename='libgazebo_ros_control.so'/>
+  </model>
+</sdf>

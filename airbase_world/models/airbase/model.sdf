@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <model name="airbase">
+    <static>true</static>
+    <link name="link">
+      <collision name="surface">
+        <geometry>
+          <mesh>
+            <uri>model://airbase/meshes/aribase.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://airbase/meshes/airbase.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
