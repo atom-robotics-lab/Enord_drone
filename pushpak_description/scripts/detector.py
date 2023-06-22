@@ -7,7 +7,6 @@ import math
 arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_4X4_250)
 
 arucoParams = cv2.aruco.DetectorParameters_create()
-vid = cv2.VideoCapture(0)
 
 
 class detection():

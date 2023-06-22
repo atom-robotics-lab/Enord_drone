@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import rospy
 from geometry_msgs.msg import Twist
-from opencv import detection
+from detector import detection
 from cv_bridge import CvBridge, CvBridgeError
 
 import cv2
@@ -12,15 +12,15 @@ class Robot_Controller:
     def __init__(self):
 
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("/rrbot/camera1/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("/iris/camera/rgb/image_raw", Image, self.callback)
         self.image_pub = rospy.Publisher("image_topic_2", Image)
         self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
 
         self.velocity_msg = Twist()
-        self.angular_p = rospy.get_param("aruco_navigation/angular_p")
-        self.radius_threshold = rospy.get_param("aruco_navigation/radius_threshold")
-        self.theta_precision = rospy.get_param("aruco_navigation/theta_precision")
-        self.linear_p = rospy.get_param("aruco_navigation/linear_p")
+        self.angular_p = 10
+        self.radius_threshold = 10 
+        self.theta_precision = 10
+        self.linear_p = 10
 
         self.id = None
        
@@ -38,11 +38,10 @@ class Robot_Controller:
         self.pub.publish(self.velocity_msg)
 
     def callback(self, data):
-        try:
-            self.cv1_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
-            self.control_loop()
-        except CvBridgeError as e:
-            print(e)
+        self.cv1_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
+        print("Arjun")
+        self.control_loop()
+
 
     def direction(self, markerID):
 
@@ -126,8 +125,10 @@ class Robot_Controller:
 
 
 def main():
+    print("ok")
     rospy.init_node("robot controller", anonymous=True)
     of = Robot_Controller()
+    print("lmao")
     try:
         rospy.spin()
 
@@ -136,7 +137,7 @@ def main():
         print("error")
     cv2.destroyAllWindows()
 
-
+print("lmao")
 main()
 
 
