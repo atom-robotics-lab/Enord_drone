@@ -3,7 +3,7 @@ import rospy
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import TimeReference, Image
-from geometry_msgs.msg import PoseStamped,TwistStamped
+from geometry_msgs.msg import PoseStamped,TwistStamped, Twist
 from mavros_msgs.msg import State, Thrust
 from mavros_msgs.srv import CommandBool, CommandBoolRequest, SetMode, SetModeRequest, ParamPush,ParamPushRequest,ParamSet,ParamSetRequest,ParamSetResponse
 from mavros_msgs.srv import ParamGet, ParamGetRequest, ParamGetResponse
@@ -14,8 +14,9 @@ current_vel = TwistStamped()
 time_stamp = TimeReference()
 reached = False
 land = False
-flag1 = False
-flag2 = False
+x_error = 0
+y_error = 0
+state = 0
 object_detected = False
 flag_inititate = True
 check_tag = False
@@ -28,6 +29,11 @@ def img_cb(msg):
       print(e)
     obj_distance = cv_image[cv_image.shape[0]//2, cv_image.shape[1]//2]    
 
+def aruco_cb(msg):
+    global x_error, y_error
+    x_error = msg.linear.x
+    y_error = msg.linear.y
+    
 def state_cb(msg):
     global current_state
     current_state = msg
@@ -58,6 +64,7 @@ if __name__ == "__main__":
     param_client = rospy.ServiceProxy("mavros_msgs/ParamSet", ParamSet)    
     rospy.wait_for_service("/mavros/set_mode")
     set_mode_client = rospy.ServiceProxy("mavros/set_mode", SetMode)
+    aruco_detection = rospy.Subscriber("/aruco_detection", Twist, callback=aruco_cb)
 
     rate = rospy.Rate(20)
     while(not rospy.is_shutdown() and current_state.connected):
@@ -70,7 +77,6 @@ if __name__ == "__main__":
         vel_msg.twist.angular.x = 0.0
         vel_msg.twist.angular.y = 0.0
         vel_msg.twist.angular.z = 0.0
-        print("wtf")
         local_vel_pub.publish(vel_msg)
         rate.sleep()
 
@@ -109,8 +115,38 @@ if __name__ == "__main__":
         z_val = current_orien.pose.position.z
         yaw = current_orien.pose.orientation.w
 
-        if z_val < 6:
-            vel_msg.twist.linear.z = 0.8
+        if state == 0:
+            if z_val < 6:
+                vel_msg.twist.linear.z = 0.8
+            else:
+                vel_msg.twist.linear.z = 0
+                offb_set_mode.custom_mode = "AUTO.LOITER"
+                if (set_mode_client.call(offb_set_mode).mode_sent == True):
+                    rospy.loginfo("AUTO.LOITER mode enable")
+                state = 2
+                rospy.loginfo("Height Reached")
+        elif state == 2:
+            if offb_set_mode.custom_mode == "AUTO.LOITER":
+                offb_set_mode.custom_mode = "OFFBOARD"
+                if (set_mode_client.call(offb_set_mode).mode_sent == True):
+                    rospy.loginfo("OFFBOARD mode enable")
+            else:
+                print(x_error)
+                if z_val > 1.3:
+                    vel_msg.twist.linear.z = -0.4
+                    vel_msg.twist.linear.x = y_error* 0.1
+                    vel_msg.twist.linear.y = -x_error* 0.1
+                else:
+                    print("Detection Complete")
+                    vel_msg.twist.linear.z = -0.4
+                    vel_msg.twist.linear.x = 0
+                    vel_msg.twist.linear.y = 0
+                    # offb_set_mode.custom_mode = "AUTO.LAND"
+                    # if (set_mode_client.call(offb_set_mode).mode_sent == True):
+                    #     rospy.loginfo("AUTO.LAND mode enable")
+
+                    
+
         # elif z_val > 6 and x_val < 5 and flag2 == False:
         #     if offb_set_mode.custom_mode == "AUTO.LOITER":
         #         offb_set_mode.custom_mode = 'OFFBOARD'
@@ -152,11 +188,7 @@ if __name__ == "__main__":
         #         vel_msg.twist.linear.z = 0
         #         vel_msg.twist.linear.x = -0.8
         #         vel_msg.twist.linear.y = 0
-        else:
-            vel_msg.twist.linear.z = 0
-            offb_set_mode.custom_mode = "AUTO.LOITER"
-            if (set_mode_client.call(offb_set_mode).mode_sent == True):
-                rospy.loginfo("AUTO.LOITER mode enable")
+            
         
 
 

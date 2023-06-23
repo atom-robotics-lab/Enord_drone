@@ -14,25 +14,19 @@ class Robot_Controller:
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/iris/camera/rgb/image_raw", Image, self.callback)
         self.image_pub = rospy.Publisher("image_topic_2", Image)
-        self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+        self.aruco_detection = rospy.Publisher("/aruco_detection", Twist, queue_size=10)
 
-        self.velocity_msg = Twist()
-        self.angular_p = 10
-        self.radius_threshold = 10 
-        self.theta_precision = 10
-        self.linear_p = 10
+        self.aruco_msg = Twist()
 
         self.id = None
        
         self.detect = detection()
         self.detect.T = 3
-        self.lt = ""
-        self.at = ""
 
-    def move(self, linear, angular):
-        self.velocity_msg.linear.x = linear
-        self.velocity_msg.angular.z = angular
-        self.pub.publish(self.velocity_msg)
+    def publish(self, x_error, y_error):
+        self.aruco_msg.linear.x = x_error
+        self.aruco_msg.linear.y = y_error
+        self.aruco_detection.publish(self.aruco_msg)
 
     def callback(self, data):
         self.cv1_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -54,24 +48,40 @@ class Robot_Controller:
         self.Result = self.detect.aruco_detection(self.cv1_image)
         aruco_center, aruco_radius = self.Result[1] , self.Result[2]
 
-
         frame_height = self.Result[0].shape[0]
         frame_width  = self.Result[0].shape[1]
+        x_error = 0
+        y_error = 0
 
         if aruco_center != None and aruco_radius != None:
             aruco_x = aruco_center[0]
             aruco_y = aruco_center[1]
 
-            if (aruco_x > frame_width/2):
+
+
+            if (aruco_x > frame_height + 10):
                 print("Go Right")
-            else :
+                x_error = 1
+            elif(aruco_x < frame_height - 10):
                 print("Go Left")
+                x_error = -1
+            else:
+                x_error = 0
             
-            if (aruco_y > frame_height/2):
+            if (aruco_y > 300):
                 print("Go Down")
-            else :
+                y_error = -1
+            elif (aruco_y < 280):
                 print("Go Up")
+                y_error = 1
+            else:
+                y_error = 0
             
+            self.publish(x_error, y_error)
+        else:
+            x_error = 5
+            y_error = 0
+            self.publish(x_error, y_error)
 
         cv2.line(self.Result[4] , (frame_height,0),(frame_height,frame_width),(255,0,0),2)
         cv2.line(self.Result[4] , (0, 290),(1000, 290),(255,0,0),2)
