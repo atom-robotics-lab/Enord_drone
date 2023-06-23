@@ -106,7 +106,7 @@
       <real_time>132 941920439</real_time>
       <wall_time>1687519729 64494485</wall_time>
       <iterations>32929</iterations>
-      <model name='aruco_marker1_clone_13'>
+      <model name='aruco_marker3'>
         <pose>-1.93965 7.15892 0.39998 1.5708 3.3e-05 3.12291</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
@@ -116,7 +116,7 @@
           <wrench>-1.54852 0.028501 -2.32125 0 -0 0</wrench>
         </link>
       </model>
-      <model name='aruco_marker1_clone_5'>
+      <model name='aruco_marker1'>
         <pose>-6.87165 5.20784 0.39998 1.5708 -3.3e-05 -2.1172</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
@@ -126,7 +126,7 @@
           <wrench>0.799474 1.32677 -2.32093 0 -0 0</wrench>
         </link>
       </model>
-      <model name='aruco_marker1_clone_7'>
+      <model name='aruco_marker2'>
         <pose>1.50218 0.018408 0.40001 1.57082 -0 -3.13314</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
@@ -157,7 +157,7 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='aruco_marker1_clone_5'>
+    <model name='aruco_marker1'>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -224,7 +224,7 @@
       </link>
       <pose>-0.412029 4.98873 8.75723 -0.000157 -0.000103 1.51087</pose>
     </model>
-    <model name='aruco_marker1_clone_7'>
+    <model name='aruco_marker2'>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -235,9 +235,9 @@
           </geometry>
           <material>
             <script>
-              <uri>model://aruco_marker1/materials/scripts</uri>
-              <uri>model://aruco_marker1/materials/textures</uri>
-              <name>arucomarker1/Marker</name>
+              <uri>model://aruco_marker2/materials/scripts</uri>
+              <uri>model://aruco_marker2/materials/textures</uri>
+              <name>arucomarker2/Marker</name>
             </script>
             <ambient>1 1 1 1</ambient>
             <diffuse>1 1 1 1</diffuse>
@@ -291,7 +291,7 @@
       </link>
       <pose>-0.50836 -0.108038 8.75725 -1.4e-05 2.4e-05 1.50604</pose>
     </model>
-    <model name='aruco_marker1_clone_13'>
+    <model name='aruco_marker3'>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -302,9 +302,9 @@
           </geometry>
           <material>
             <script>
-              <uri>model://aruco_marker1/materials/scripts</uri>
-              <uri>model://aruco_marker1/materials/textures</uri>
-              <name>arucomarker1/Marker</name>
+              <uri>model://aruco_marker3/materials/scripts</uri>
+              <uri>model://aruco_marker3/materials/textures</uri>
+              <name>arucomarker3/Marker</name>
             </script>
             <ambient>1 1 1 1</ambient>
             <diffuse>1 1 1 1</diffuse>
