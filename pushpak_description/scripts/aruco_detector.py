@@ -95,7 +95,7 @@ class Robot_Controller:
 
 
 def main():
-    rospy.init_node("robot controller", anonymous=True)
+    rospy.init_node("aruco_detector_node", anonymous=True)
     of = Robot_Controller()
     try:
         rospy.spin()
