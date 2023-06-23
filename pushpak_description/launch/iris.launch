@@ -1,7 +1,10 @@
 <launch>
 	<!-- Include the MAVROS node with SITL and Gazebo -->
 	<include file="$(find px4)/launch/mavros_posix_sitl.launch">
-	<arg name="world" default="$(find pushpak_description)/worlds/hazor3.world"/>
-	<arg name="sdf" default="$(find pushpak_description)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf"/>
+		<arg name="x" value="0" />
+		<arg name="y" value="0" />
+		<arg name="z" value="0.404" />
+		<arg name="world" default="$(find airbase_world)/worlds/airbase.world"/>
+		<arg name="sdf" default="$(find pushpak_description)/models/iris_downward_depth_camera/iris_downward_depth_camera.sdf"/>
 	</include>
 </launch>
