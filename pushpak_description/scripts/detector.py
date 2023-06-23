@@ -40,7 +40,7 @@ class detection():
                 cX = int((topLeft[0] + bottomRight[0]) / 2.0)
                 cY = int((topLeft[1] + bottomRight[1]) / 2.0)
                 cv2.circle(image, (cX, cY), radius, (0, 0, 255), 3)
-
+                cv2.circle(image, (cX, cY), 5, (0, 0, 255), -1)
                 cv2.putText(image, "Aruco Marker ID = " + str(markerID),
                             (topLeft[0] + 20, topLeft[1] - 55),
                             cv2.FONT_HERSHEY_SIMPLEX,

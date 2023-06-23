@@ -14,6 +14,8 @@ current_vel = TwistStamped()
 time_stamp = TimeReference()
 reached = False
 land = False
+flag1 = False
+flag2 = False
 object_detected = False
 flag_inititate = True
 check_tag = False
@@ -68,12 +70,9 @@ if __name__ == "__main__":
         vel_msg.twist.angular.x = 0.0
         vel_msg.twist.angular.y = 0.0
         vel_msg.twist.angular.z = 0.0
-        for i in range(100):
-            if(rospy.is_shutdown()):
-                break
-            vel_msg.header.stamp = rospy.Time.now()
-            local_vel_pub.publish(vel_msg)
-            rate.sleep()
+        print("wtf")
+        local_vel_pub.publish(vel_msg)
+        rate.sleep()
 
         param_set_mode = ParamSetRequest()
         param_set_mode.param_id = "NAV_RCL_ACT"
@@ -112,11 +111,54 @@ if __name__ == "__main__":
 
         if z_val < 6:
             vel_msg.twist.linear.z = 0.8
+        # elif z_val > 6 and x_val < 5 and flag2 == False:
+        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
+        #         offb_set_mode.custom_mode = 'OFFBOARD'
+        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
+        #             rospy.loginfo("OFFBOARD enabled")
+        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
+        #         vel_msg.twist.linear.z = 0
+        #         vel_msg.twist.linear.x = 0.8
+        # elif z_val > 6 and y_val < 5 and flag1 == False:
+        #     flag2 == True
+        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
+        #         offb_set_mode.custom_mode = 'OFFBOARD'
+        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
+        #             rospy.loginfo("OFFBOARD enabled")
+        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
+        #         vel_msg.twist.linear.z = 0
+        #         vel_msg.twist.linear.x = 0
+        #         vel_msg.twist.linear.y = 0.8
+        #         flag1 = True
+        # elif z_val > 6 and x_val > 0:
+        #     flag1 == True
+
+        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
+        #         offb_set_mode.custom_mode = 'OFFBOARD'
+        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
+        #             rospy.loginfo("OFFBOARD enabled")
+        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
+        #         vel_msg.twist.linear.z = 0
+        #         vel_msg.twist.linear.x = -0.8
+        #         vel_msg.twist.linear.y = 0
+        # elif z_val > 6 and y_val > 0:
+        #     flag2 == True
+
+        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
+        #         offb_set_mode.custom_mode = 'OFFBOARD'
+        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
+        #             rospy.loginfo("OFFBOARD enabled")
+        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
+        #         vel_msg.twist.linear.z = 0
+        #         vel_msg.twist.linear.x = -0.8
+        #         vel_msg.twist.linear.y = 0
         else:
             vel_msg.twist.linear.z = 0
             offb_set_mode.custom_mode = "AUTO.LOITER"
             if (set_mode_client.call(offb_set_mode).mode_sent == True):
                 rospy.loginfo("AUTO.LOITER mode enable")
+        
+
 
 
 
