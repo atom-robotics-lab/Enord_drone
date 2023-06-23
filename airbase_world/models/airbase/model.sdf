@@ -1,32 +1,23 @@
 <?xml version="1.0" ?>
-<sdf version="1.4">
+<sdf version="1.5">
   <model name="airbase">
     <static>true</static>
-    <link name="link">
-      <collision name="surface">
-        <geometry>
-          <mesh>
-            <uri>model://airbase/meshes/aribase.dae</uri>
-          </mesh>
-        </geometry>
-      </collision>
+    <link name="airbase">
       <visual name="visual">
         <geometry>
           <mesh>
             <uri>model://airbase/meshes/airbase.dae</uri>
-          </mesh>q
+          </mesh>
         </geometry>
-        <material name="my_material">
-          <technique name="lighting">
-            <pass>
-              <texture_unit>
-                <texture file="/home/noemoji041/ros_workspaces/enord_ws/src/Enord_drone/airbase_world/models/airbase/materials/textures/grass_dry.png"/>
-                <scale>20 20</scale>
-              </texture_unit>
-            </pass>
-          </technique>
-        </material>
       </visual>
+      <collision name="wall_1">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100000 100000 0.7</size>
+          </box>
+        </geometry>
+      </collision>
     </link>
   </model>
 </sdf>
