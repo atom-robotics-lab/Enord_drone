@@ -114,7 +114,6 @@ if __name__ == "__main__":
         y_val = current_orien.pose.position.y
         z_val = current_orien.pose.position.z
         yaw = current_orien.pose.orientation.w
-
         if state == 0:
             if z_val < 6:
                 vel_msg.twist.linear.z = 0.8
@@ -123,82 +122,68 @@ if __name__ == "__main__":
                 offb_set_mode.custom_mode = "AUTO.LOITER"
                 if (set_mode_client.call(offb_set_mode).mode_sent == True):
                     rospy.loginfo("AUTO.LOITER mode enable")
-                state = 2
+                state = 1
                 rospy.loginfo("Height Reached")
+                rospy.loginfo("State Changed to 1")
+        elif state == 1:
+            internal_state = 0
+            offb_set_mode.custom_mode = "OFFBOARD"
+            if (set_mode_client.call(offb_set_mode).mode_sent == True):
+                rospy.loginfo("OFFBOARD mode enable")
+            
+            rate = rospy.Rate(20)
+            for i in range(150):
+                rospy.loginfo("Forward ")
+                vel_msg.twist.linear.x = 1
+                local_vel_pub.publish(vel_msg)
+                rate.sleep()
+            
+            for i in range(150):
+                rospy.loginfo("Right ")
+                vel_msg.twist.linear.x = 0
+                vel_msg.twist.linear.y = 1
+                local_vel_pub.publish(vel_msg)
+                rate.sleep()
+
+            for i in range(150): 
+                rospy.loginfo("Backward ")
+                vel_msg.twist.linear.x = -1
+                vel_msg.twist.linear.y = 0
+                local_vel_pub.publish(vel_msg)
+                rate.sleep()
+
+            for i in range(150):
+                rospy.loginfo("Left ")
+                vel_msg.twist.linear.x = 0
+                vel_msg.twist.linear.y = -1
+                local_vel_pub.publish(vel_msg)
+                rate.sleep()
+
+            vel_msg.twist.linear.x = 0
+            vel_msg.twist.linear.y = 0
+            rospy.loginfo("Square Complete")
+            rospy.loginfo("State Changed to 2")
+            rospy.loginfo("Landing Started")
+            state = 2            
+
         elif state == 2:
             if offb_set_mode.custom_mode == "AUTO.LOITER":
                 offb_set_mode.custom_mode = "OFFBOARD"
                 if (set_mode_client.call(offb_set_mode).mode_sent == True):
                     rospy.loginfo("OFFBOARD mode enable")
             else:
-                print(x_error)
-                if z_val > 1.3:
-                    vel_msg.twist.linear.z = -0.4
-                    vel_msg.twist.linear.x = y_error* 0.1
-                    vel_msg.twist.linear.y = -x_error* 0.1
+                if z_val > 1.1:
+                    vel_msg.twist.linear.z = -0.3
+                    vel_msg.twist.linear.x = y_error* 0.2
+                    vel_msg.twist.linear.y = -x_error* 0.15
                 else:
                     print("Detection Complete")
-                    vel_msg.twist.linear.z = -0.4
+                    vel_msg.twist.linear.z = -0.3
                     vel_msg.twist.linear.x = 0
                     vel_msg.twist.linear.y = 0
-                    # offb_set_mode.custom_mode = "AUTO.LAND"
-                    # if (set_mode_client.call(offb_set_mode).mode_sent == True):
-                    #     rospy.loginfo("AUTO.LAND mode enable")
-
-                    
-
-        # elif z_val > 6 and x_val < 5 and flag2 == False:
-        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
-        #         offb_set_mode.custom_mode = 'OFFBOARD'
-        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
-        #             rospy.loginfo("OFFBOARD enabled")
-        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
-        #         vel_msg.twist.linear.z = 0
-        #         vel_msg.twist.linear.x = 0.8
-        # elif z_val > 6 and y_val < 5 and flag1 == False:
-        #     flag2 == True
-        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
-        #         offb_set_mode.custom_mode = 'OFFBOARD'
-        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
-        #             rospy.loginfo("OFFBOARD enabled")
-        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
-        #         vel_msg.twist.linear.z = 0
-        #         vel_msg.twist.linear.x = 0
-        #         vel_msg.twist.linear.y = 0.8
-        #         flag1 = True
-        # elif z_val > 6 and x_val > 0:
-        #     flag1 == True
-
-        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
-        #         offb_set_mode.custom_mode = 'OFFBOARD'
-        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
-        #             rospy.loginfo("OFFBOARD enabled")
-        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
-        #         vel_msg.twist.linear.z = 0
-        #         vel_msg.twist.linear.x = -0.8
-        #         vel_msg.twist.linear.y = 0
-        # elif z_val > 6 and y_val > 0:
-        #     flag2 == True
-
-        #     if offb_set_mode.custom_mode == "AUTO.LOITER":
-        #         offb_set_mode.custom_mode = 'OFFBOARD'
-        #         if(set_mode_client.call(offb_set_mode).mode_sent == True):
-        #             rospy.loginfo("OFFBOARD enabled")
-        #     elif offb_set_mode.custom_mode == 'OFFBOARD':
-        #         vel_msg.twist.linear.z = 0
-        #         vel_msg.twist.linear.x = -0.8
-        #         vel_msg.twist.linear.y = 0
-            
-        
-
-
-
-
-                # while (current_state.mode == "OFFBOARD" and land == True):
-                # if (land == True):
-                #     offb_set_mode.custom_mode = "AUTO.LAND"
-                #     if current_state.mode != "AUTO.LAND":
-                #         if (set_mode_client.call(offb_set_mode).mode_sent == True):
-                
-                #             rospy.loginfo("AUTO.LAND mode enable")
+                    offb_set_mode.custom_mode = "AUTO.LAND"
+                    if (set_mode_client.call(offb_set_mode).mode_sent == True):
+                        rospy.loginfo("AUTO.LAND mode enable")
+                        rospy.loginfo("Landing Completed")
+                        rospy.loginfo("Destination Reached")                     
         rate.sleep()
