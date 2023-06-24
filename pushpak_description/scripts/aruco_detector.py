@@ -4,6 +4,8 @@ from geometry_msgs.msg import Twist
 from detector import detection
 from cv_bridge import CvBridge, CvBridgeError
 
+import message_filters
+
 import cv2
 from sensor_msgs.msg import Image
 
@@ -12,11 +14,10 @@ class Robot_Controller:
     def __init__(self):
 
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("/iris0/camera/rgb/image_raw", Image, self.callback0)
-        self.image_sub = rospy.Subscriber("/iris1/camera/rgb/image_raw", Image, self.callback1)
-        self.image_sub = rospy.Subscriber("/iris2/camera/rgb/image_raw", Image, self.callback2)
+        self.image_sub0 = rospy.Subscriber("/iris0/camera/rgb/image_raw", Image, callback=self.callback0)
+        self.image_sub1 = rospy.Subscriber("/iris1/camera/rgb/image_raw", Image, callback=self.callback1)
+        self.image_sub2 = rospy.Subscriber("/iris2/camera/rgb/image_raw", Image, callback=self.callback2)
 
-        self.image_pub = rospy.Publisher("image_topic_2", Image)
         self.aruco_detection0 = rospy.Publisher("/aruco_detection0", Twist, queue_size=10)
         self.aruco_detection1 = rospy.Publisher("/aruco_detection1", Twist, queue_size=10)
         self.aruco_detection2 = rospy.Publisher("/aruco_detection2", Twist, queue_size=10)
@@ -32,30 +33,36 @@ class Robot_Controller:
         self.detect = detection()
         self.detect.T = 3
 
+    def image_cb(self, data1, data2, data3):
+        print("test")
+        self.cv1_image0 = self.bridge.imgmsg_to_cv2(data1, "bgr8")
+        self.cv1_image1 = self.bridge.imgmsg_to_cv2(data2, "bgr8")
+        self.cv1_image2 = self.bridge.imgmsg_to_cv2(data3, "bgr8")
+        self.control_loop()
+
     def publish0(self, x_error0, y_error0):
         self.aruco_msg0.linear.x = x_error0
         self.aruco_msg0.linear.y = y_error0
         self.aruco_detection0.publish(self.aruco_msg0)
 
-    def publish1(self, x_error0, y_error0):
-        self.aruco_msg1.linear.x = x_error0
-        self.aruco_msg1.linear.y = y_error0
+    def publish1(self, x_error1, y_error1):
+        self.aruco_msg1.linear.x = x_error1
+        self.aruco_msg1.linear.y = y_error1
         self.aruco_detection1.publish(self.aruco_msg1)
 
-    def publish2(self, x_error0, y_error0):
-        self.aruco_msg2.linear.x = x_error0
-        self.aruco_msg2.linear.y = y_error0
+    def publish2(self, x_error2, y_error2):
+        self.aruco_msg2.linear.x = x_error2
+        self.aruco_msg2.linear.y = y_error2
         self.aruco_detection2.publish(self.aruco_msg2)
 
     def callback0(self, data):
         self.cv1_image0 = self.bridge.imgmsg_to_cv2(data, "bgr8")
-        self.control_loop()
     def callback1(self, data):
         self.cv1_image1 = self.bridge.imgmsg_to_cv2(data, "bgr8")
         self.control_loop()
     def callback2(self, data):
         self.cv1_image2 = self.bridge.imgmsg_to_cv2(data, "bgr8")
-        self.control_loop()
+ 
 
     def direction(self, markerID):
 
@@ -67,14 +74,14 @@ class Robot_Controller:
             return 0, "", "Parked" , "ID - 3"
 
     def control_loop(self):
-        
-        
+  
         self.Result0 = self.detect.aruco_detection(self.cv1_image0)
         aruco_center0, aruco_radius0 = self.Result0[1] , self.Result0[2]
         self.Result1 = self.detect.aruco_detection(self.cv1_image1)
         aruco_center1, aruco_radius1 = self.Result1[1] , self.Result1[2]
         self.Result2 = self.detect.aruco_detection(self.cv1_image2)
         aruco_center2, aruco_radius2 = self.Result2[1] , self.Result2[2]
+
 
         frame_height0 = self.Result0[0].shape[0]
         frame_width0  = self.Result0[0].shape[1]
@@ -106,7 +113,7 @@ class Robot_Controller:
             
             if (aruco_y0 > 300):
                 print("Go Down")
-                y_error = -1
+                y_error0 = -1
             elif (aruco_y0 < 280):
                 print("Go Up")
                 y_error0 = 1
@@ -115,8 +122,8 @@ class Robot_Controller:
             
             self.publish0(x_error0, y_error0)
         else:
-            x_error = 5
-            y_error = 0
+            x_error0 = 5
+            y_error0 = 0
             self.publish0(x_error0, y_error0)
         if aruco_center1 != None and aruco_radius1 != None:
             aruco_x1 = aruco_center1[0]
@@ -126,7 +133,7 @@ class Robot_Controller:
 
             if (aruco_x1 > frame_height1 + 10):
                 print("Go Right")
-                x_error = 1
+                x_error1 = 1
             elif(aruco_x1 < frame_height1 - 10):
                 print("Go Left")
                 x_error1 = -1
@@ -156,16 +163,16 @@ class Robot_Controller:
 
             if (aruco_x2 > frame_height2 + 10):
                 print("Go Right")
-                x_error = 1
+                x_error2 = 1
             elif(aruco_x2 < frame_height2 - 10):
                 print("Go Left")
-                x_error = -1
+                x_error2 = -1
             else:
-                x_error = 0
+                x_error2 = 0
             
             if (aruco_y2 > 300):
                 print("Go Down")
-                y_error = -1
+                y_error2 = -1
             elif (aruco_y2 < 280):
                 print("Go Up")
                 y_error2 = 1
@@ -191,6 +198,7 @@ class Robot_Controller:
         cv2.imshow("Frame1", self.Result1[4])
         cv2.imshow("Frame2", self.Result2[4])
         cv2.waitKey(1)
+        
 
 
 def main():
@@ -200,6 +208,5 @@ def main():
         rospy.spin()
     except:
         print("error")
-    cv2.destroyAllWindows()
 
 main()
