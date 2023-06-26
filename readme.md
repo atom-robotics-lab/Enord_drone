@@ -13,12 +13,12 @@
         git clone git@github.com:atom-robotics-lab/Enord_drone.git
         ```
 
-- Downloading mesh file & dependencies:
+- Downloading texture file for airbase:
     ```sh
     cd <your_workspace>/src/enord_drone
     ```
     ```sh
-    ./download_mesh.bash
+    ./download_texture.bash
     ```
 - building the package:
     ```sh
