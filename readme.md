@@ -27,6 +27,18 @@
     ```sh
     catkin_make
     ```
+    
+## Installations 
+
+- Install OpenCV
+    ```sh
+    pip install opencv-contrib-python
+    ```
+
+- Install imutils
+    ```sh
+    pip install imutils
+    ```
 
 ## Usage
 
@@ -37,4 +49,8 @@
 - Running drone_description files:
     ```sh
     roslaunch pushpak_description (controller/display/gazebo).launch
+    ```
+- Running drone_controller:
+    ```sh
+    roslaunch drone_controller iris.launch
     ```
