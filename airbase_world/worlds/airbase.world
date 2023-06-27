@@ -184,7 +184,9 @@
               <torsional>
                 <ode/>
               </torsional>
-              <ode/>
+              <ode>
+                <mu>1.0</mu>
+              </ode>
             </friction>
           </surface>
         </collision>
@@ -199,7 +201,7 @@
             <iyz>0</iyz>
             <izz>1</izz>
           </inertia>
-          <mass>1</mass>
+          <mass>6</mass>
         </inertial>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
@@ -251,7 +253,9 @@
               <torsional>
                 <ode/>
               </torsional>
-              <ode/>
+              <ode>
+                <mu>1.0</mu>
+              </ode>
             </friction>
           </surface>
         </collision>
@@ -266,7 +270,7 @@
             <iyz>0</iyz>
             <izz>1</izz>
           </inertia>
-          <mass>1</mass>
+          <mass>6</mass>
         </inertial>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
@@ -318,7 +322,9 @@
               <torsional>
                 <ode/>
               </torsional>
-              <ode/>
+              <ode>
+                <mu>1.0</mu>
+              </ode>
             </friction>
           </surface>
         </collision>
@@ -333,7 +339,7 @@
             <iyz>0</iyz>
             <izz>1</izz>
           </inertia>
-          <mass>1</mass>
+          <mass>6</mass>
         </inertial>
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
@@ -381,7 +387,7 @@
       <pose>0.01419 -105.704 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
+          <mass>12</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -434,7 +440,7 @@
       <pose>0.014258 -63.6032 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
+          <mass>12</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
@@ -487,7 +493,7 @@
       <pose>-0.009831 -21.5177 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>
-          <mass>1</mass>
+          <mass>12</mass>
           <inertia>
             <ixx>0.166667</ixx>
             <ixy>0</ixy>
