@@ -1,0 +1,4 @@
+<launch>
+    <node pkg = "drone_controller" type= "aruco_detector.py" name="aruco_detector"/>
+    <node pkg = "drone_controller" type= "off_board.py" name="off_board"/>
+</launch>
