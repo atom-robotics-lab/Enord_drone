@@ -140,6 +140,7 @@
       </camera>
     </gui>
     <model name='aruco_marker1'>
+      <static>true</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -209,6 +210,7 @@
       <pose>-0.412029 4.98873 8.75723 -0.000157 -0.000103 1.51087</pose>
     </model>
     <model name='aruco_marker2'>
+      <static>true</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -278,6 +280,7 @@
       <pose>-0.50836 -0.108038 8.75725 -1.4e-05 2.4e-05 1.50604</pose>
     </model>
     <model name='aruco_marker3'>
+      <static>true</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -384,6 +387,7 @@
       <pose>-0.14769 0.438371 0 0 -0 0</pose>
     </model>
     <model name='dock1'>
+      <static>true</static>
       <pose>0.01419 -105.704 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
@@ -437,6 +441,7 @@
       </link>
     </model>
     <model name='dock2'>
+      <static>true</static>
       <pose>0.014258 -63.6032 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>
@@ -490,6 +495,7 @@
       </link>
     </model>
     <model name='dock3'>
+      <static>true</static>
       <pose>-0.009831 -21.5177 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>
