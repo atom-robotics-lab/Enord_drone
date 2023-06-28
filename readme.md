@@ -15,7 +15,7 @@
 
 - Adding Model in PX4 directory
     ```sh
-    cd <your_workspace>/src/enord_drone
+    cd <your_workspace>/src/Enord_drone
     ```
     ```sh
     ./setup.bash
@@ -24,7 +24,7 @@
 
 - Downloading texture file for airbase:
     ```sh
-    cd <your_workspace>/src/enord_drone
+    cd <your_workspace>/src/Enord_drone
     ```
     ```sh
     ./download_texture.bash
