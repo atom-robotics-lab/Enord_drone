@@ -51,6 +51,16 @@
 
 ## Usage
 
+
+- Running the task:
+     ```sh
+    roslaunch drone_controller iris.launch
+    ```
+    
+    ```sh
+    roslaunch drone_controller controller.launch
+    ```
+
 - Running sim world:
     ```sh
     roslaunch airbase_world airbase.launch
@@ -66,12 +76,12 @@
     roslaunch drone_controller iris.launch
     ```
 
-- Running aruco_detector.py:
+- Running aruco_detector.py only:
     ```sh
     rosrun drone_controller aruco_detector.py
     ```
 
-- Running off_board.py:
+- Running off_board.py only:
     ```sh
     rosrun drone_controller off_board.py
     ```
