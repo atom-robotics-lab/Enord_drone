@@ -20,73 +20,57 @@
     ```sh
     ./setup.bash
     ```
+    **Note:** Makes sure you have px4-autopilot installed in your root directory. For px4-autopilot installation visit: [Ros wit mavros isntallation](https://docs.px4.io/main/en/ros/mavros_installation.html) 
 
-
-- Downloading texture file for airbase:
+- Installing dependencies and texture file:
     ```sh
     cd <your_workspace>/src/Enord_drone
     ```
     ```sh
     ./download_texture.bash
     ```
-- building the package:
+    
+- Installing mavlink and mavros ros package:
+    ```sh
+    sudo apt install ros-noetic-mavros ros-noetic-mavlink
+    ```
+    
+- Building the package:
     ```sh
     cd <your_workspace>
     ```
     ```sh
     catkin_make
     ```
-    
-## Installations 
-
-- Install OpenCV
-    ```sh
-    pip install opencv-contrib-python
-    ```
-
-- Install imutils
-    ```sh
-    pip install imutils
-    ```
 
 ## Usage
 
-
 - Running the task:
-     ```sh
-    roslaunch drone_controller iris.launch
-    ```
-    
-    ```sh
-    roslaunch drone_controller controller.launch
-    ```
-
-- Running sim world:
-    ```sh
-    roslaunch airbase_world airbase.launch
-    ```
-
-- Running drone_description files:
-    ```sh
-    roslaunch pushpak_description (controller/display/gazebo).launch
-    ```
-
-- Running drone_controller:
-    ```sh
-    roslaunch drone_controller iris.launch
-    ```
-
-- Running aruco_detector.py only:
-    ```sh
-    rosrun drone_controller aruco_detector.py
-    ```
-
-- Running off_board.py only:
-    ```sh
-    rosrun drone_controller off_board.py
-    ```
-
-- Running controller and detector together:
-    ```sh
-    roslaunch drone_controller controller.launch
-    ```
+    - Firstly launch the simulation launch file by:
+        ```sh
+        roslaunch drone_controller iris.launch
+        ```
+    - After that run the aruco_detection and offboard script by using controller launch file:
+        ```sh
+        roslaunch drone_controller controller.launch
+        ```
+        
+- Additional commands you might need for testing puroses:
+    - Launching only the airbase simulation world without iris models:
+        ```sh
+        roslaunch airbase_world airbase.launch
+        ```
+    - Launching drone_description files:
+        ```sh
+        roslaunch pushpak_description (controller/display/gazebo).launch
+        ```
+        
+    - Running scirpts individually:
+        - Running aruco_detector.py script:
+            ```sh
+            rosrun drone_controller aruco_detector.py
+            ```
+        - Running off_board.py script:
+            ```sh
+            rosrun drone_controller off_board.py
+            ```
