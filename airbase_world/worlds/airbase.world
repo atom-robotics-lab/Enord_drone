@@ -47,10 +47,9 @@
     </scene>
     <wind/>
     <spherical_coordinates>
-      <surface_model>EARTH_WGS84</surface_model>
-      <latitude_deg>0</latitude_deg>
-      <longitude_deg>0</longitude_deg>
-      <elevation>0</elevation>
+      <latitude_deg>26.986943</latitude_deg>
+      <longitude_deg>80.893045</longitude_deg>
+      <elevation>488.0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
@@ -69,7 +68,7 @@
         </link>
       </model>
       <model name='aruco_marker1'>
-        <pose>0.031917 -105.687 0.706674 1.57098 0.000173 -3.12891</pose>
+        <pose>1.031917 -105.687 0.706674 1.57098 0.000173 -3.12891</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
           <pose>0.031917 -105.687 0.706674 1.57098 0.000173 -3.12891</pose>

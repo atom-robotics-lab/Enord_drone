@@ -25,8 +25,8 @@
         <arg name="fcu_url" default="udp://:14540@localhost:14580"/>
         <!-- PX4 SITL and vehicle spawn -->
         <include file="$(find px4)/launch/single_vehicle_spawn.launch">
-            <arg name="x" value="-2"/>
-            <arg name="y" value="-105.702"/>
+            <arg name="x" value="-59"/>
+            <arg name="y" value="150.5171"/>
             <arg name="z" value="0.48"/>
             <arg name="R" value="0"/>
             <arg name="P" value="0"/>
@@ -54,8 +54,8 @@
         <arg name="fcu_url" default="udp://:14541@localhost:14581"/>
         <!-- PX4 SITL and vehicle spawn -->
         <include file="$(find px4)/launch/single_vehicle_spawn.launch">
-            <arg name="x" value="-2"/>
-            <arg name="y" value="-63.6082"/>
+            <arg name="x" value="-30"/>
+            <arg name="y" value="150.5171"/>
             <arg name="z" value="0.48"/>
             <arg name="R" value="0"/>
             <arg name="P" value="0"/>
@@ -83,8 +83,8 @@
         <arg name="fcu_url" default="udp://:14542@localhost:14582"/>
         <!-- PX4 SITL and vehicle spawn -->
         <include file="$(find px4)/launch/single_vehicle_spawn.launch">
-            <arg name="x" value="-2"/>
-            <arg name="y" value="-21.5171"/>
+            <arg name="x" value="1"/>
+            <arg name="y" value="150.5171"/>
             <arg name="z" value="0.48"/>
             <arg name="R" value="0"/>
             <arg name="P" value="0"/>
