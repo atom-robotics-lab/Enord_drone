@@ -47,84 +47,85 @@
     </scene>
     <wind/>
     <spherical_coordinates>
-      <latitude_deg>26.986943</latitude_deg>
-      <longitude_deg>80.893045</longitude_deg>
-      <elevation>488.0</elevation>
+      <latitude_deg>26.9869</latitude_deg>
+      <longitude_deg>80.893</longitude_deg>
+      <elevation>488</elevation>
       <heading_deg>0</heading_deg>
+      <surface_model>EARTH_WGS84</surface_model>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>10119 536000000</sim_time>
-      <real_time>359 841092430</real_time>
-      <wall_time>1687792243 21000515</wall_time>
-      <iterations>89564</iterations>
+      <sim_time>11383 416000000</sim_time>
+      <real_time>197 821067296</real_time>
+      <wall_time>1688668536 282140871</wall_time>
+      <iterations>45495</iterations>
       <model name='airbase'>
-        <pose>-0.14769 0.438371 0 0 -0 0</pose>
+        <pose>94.6422 55.6769 0 0 0 -1.61823</pose>
         <scale>1 1 1</scale>
         <link name='airbase'>
-          <pose>-0.14769 0.438371 0 0 -0 0</pose>
+          <pose>94.6422 55.6769 0 0 0 -1.61823</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='aruco_marker1'>
-        <pose>1.031917 -105.687 0.706674 1.57098 0.000173 -3.12891</pose>
+        <pose>-59.4312 148.995 0.223172 1.57098 0.000174 -3.12891</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>0.031917 -105.687 0.706674 1.57098 0.000173 -3.12891</pose>
+          <pose>-59.4312 148.995 0.223172 1.57098 0.000174 -3.12891</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.744262 -0.921833 7.89299 -0.556577 -0.762695 3.06336</acceleration>
-          <wrench>-0.744262 -0.921833 7.89299 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='aruco_marker2'>
-        <pose>0.037284 -21.5096 0.706759 1.57105 6.8e-05 -3.13488</pose>
+        <pose>-30.0784 148.946 0.399599 1.57105 6.8e-05 -3.13488</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>0.037284 -21.5096 0.706759 1.57105 6.8e-05 -3.13488</pose>
+          <pose>-30.0784 148.946 0.399599 1.57105 6.8e-05 -3.13488</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-0.645323 -1.46894 9.72605 0.259232 0.210702 2.73691</acceleration>
-          <wrench>-0.645323 -1.46894 9.72605 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='aruco_marker3'>
-        <pose>0.09383 -63.6195 0.706708 1.57086 -1.1e-05 -3.1305</pose>
+        <pose>1.14945 149.237 0.273405 1.57086 -1.1e-05 -3.1305</pose>
         <scale>1 1 1</scale>
         <link name='marker'>
-          <pose>0.09383 -63.6195 0.706708 1.57086 -1.1e-05 -3.1305</pose>
+          <pose>1.14945 149.237 0.273405 1.57086 -1.1e-05 -3.1305</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-1.16407 0.251808 12.0266 2.47977 1.38258 -3.08279</acceleration>
-          <wrench>-1.16407 0.251808 12.0266 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='dock1'>
-        <pose>0.005582 -105.702 0.478337 -4.3e-05 4e-05 0.005312</pose>
+        <pose>-59.43 148.958 -0.03246 -4.3e-05 4e-05 0.005312</pose>
         <scale>1.42094 1.73711 0.256668</scale>
         <link name='link'>
-          <pose>0.005582 -105.702 0.478337 -4.3e-05 4e-05 0.005312</pose>
+          <pose>-59.43 148.958 -0.03246 -4.3e-05 4e-05 0.005312</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.275091 0.277056 2.58595 -1.10912 0.95321 0.083533</acceleration>
-          <wrench>0.275091 0.277056 2.58595 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='dock2'>
-        <pose>0.010568 -63.6082 0.478377 -8.6e-05 7.4e-05 0.00341</pose>
+        <pose>1.14085 149.182 0.021637 -8.6e-05 7.4e-05 0.00341</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>0.010568 -63.6082 0.478377 -8.6e-05 7.4e-05 0.00341</pose>
+          <pose>1.14085 149.182 0.021637 -8.6e-05 7.4e-05 0.00341</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.308432 0.249867 3.58649 0.979901 1.45658 -3.09308</acceleration>
-          <wrench>0.308432 0.249867 3.58649 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='dock3'>
-        <pose>-0.016931 -21.5171 0.478338 -5.7e-05 3.7e-05 0.007094</pose>
+        <pose>-30.0891 148.932 0.12638 -5.7e-05 3.7e-05 0.007094</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-0.016931 -21.5171 0.478338 -5.7e-05 3.7e-05 0.007094</pose>
+          <pose>-30.0891 148.932 0.12638 -5.7e-05 3.7e-05 0.007094</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.290696 0.297885 2.30525 -1.08097 1.04181 0.092995</acceleration>
-          <wrench>0.290696 0.297885 2.30525 0 -0 0</wrench>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
@@ -133,13 +134,13 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>10.0476 -109.842 50.6421 0 1.26145 -3.05879</pose>
+        <pose>-56.3775 148.321 2.33207 0 0.531228 2.87722</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
     <model name='aruco_marker1'>
-      <static>true</static>
+      <static>1</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -185,7 +186,7 @@
                 <ode/>
               </torsional>
               <ode>
-                <mu>1.0</mu>
+                <mu>1</mu>
               </ode>
             </friction>
           </surface>
@@ -209,7 +210,7 @@
       <pose>-0.412029 4.98873 8.75723 -0.000157 -0.000103 1.51087</pose>
     </model>
     <model name='aruco_marker2'>
-      <static>true</static>
+      <static>1</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -255,7 +256,7 @@
                 <ode/>
               </torsional>
               <ode>
-                <mu>1.0</mu>
+                <mu>1</mu>
               </ode>
             </friction>
           </surface>
@@ -279,7 +280,7 @@
       <pose>-0.50836 -0.108038 8.75725 -1.4e-05 2.4e-05 1.50604</pose>
     </model>
     <model name='aruco_marker3'>
-      <static>true</static>
+      <static>1</static>
       <link name='marker'>
         <pose>0 0 0 0 -0 0</pose>
         <visual name='visual'>
@@ -325,7 +326,7 @@
                 <ode/>
               </torsional>
               <ode>
-                <mu>1.0</mu>
+                <mu>1</mu>
               </ode>
             </friction>
           </surface>
@@ -386,7 +387,7 @@
       <pose>-0.14769 0.438371 0 0 -0 0</pose>
     </model>
     <model name='dock1'>
-      <static>true</static>
+      <static>1</static>
       <pose>0.01419 -105.704 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
@@ -440,7 +441,7 @@
       </link>
     </model>
     <model name='dock2'>
-      <static>true</static>
+      <static>1</static>
       <pose>0.014258 -63.6032 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>
@@ -494,7 +495,7 @@
       </link>
     </model>
     <model name='dock3'>
-      <static>true</static>
+      <static>1</static>
       <pose>-0.009831 -21.5177 0.678252 -7.9e-05 7.1e-05 0.002692</pose>
       <link name='link'>
         <inertial>

@@ -81,6 +81,8 @@ class Robot_Controller:
 
         # Convert sensor_msgs/msg/Image datatype to numpy matrix
         self.cv1_image1 = self.bridge.imgmsg_to_cv2(data, "bgr8")
+        self.control_loop()
+
     
     def callback2(self, data):
         '''Callback function for camera feed from iris1'''
@@ -89,7 +91,6 @@ class Robot_Controller:
         self.cv1_image2 = self.bridge.imgmsg_to_cv2(data, "bgr8")
 
         # Execute the control_loop()
-        self.control_loop()
 
 
     def control_loop(self):

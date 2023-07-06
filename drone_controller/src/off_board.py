@@ -293,58 +293,60 @@ if __name__ == "__main__":
             if (set_mode_client2.call(offb_set_mode2).mode_sent == True):
                 rospy.loginfo("OFFBOARD mode enable")
             
+            Distance_x = 375
+            Distance_y = 150
             rate = rospy.Rate(20)
-            for i in range(150):
+            for i in range(Distance_x):
                 # Move in forward direcrion
                 rospy.loginfo("Forward ")
-                vel_msg0.twist.linear.x = 1
+                vel_msg0.twist.linear.y = -5
                 local_vel_pub0.publish(vel_msg0)
-                vel_msg1.twist.linear.x = 1
+                vel_msg1.twist.linear.y = -5
                 local_vel_pub1.publish(vel_msg1)
-                vel_msg2.twist.linear.x = 1
+                vel_msg2.twist.linear.y = -5
                 local_vel_pub2.publish(vel_msg2)
         
                 rate.sleep()
             
-            for i in range(150):
+            for i in range(Distance_y):
                 # Move in right direcrion
                 rospy.loginfo("Right ")
-                vel_msg0.twist.linear.x = 0
-                vel_msg0.twist.linear.y = 1
+                vel_msg0.twist.linear.y = 0
+                vel_msg0.twist.linear.x = -5
                 local_vel_pub0.publish(vel_msg0)
-                vel_msg1.twist.linear.x = 0
-                vel_msg1.twist.linear.y = 1
+                vel_msg1.twist.linear.y = 0
+                vel_msg1.twist.linear.x = -5
                 local_vel_pub1.publish(vel_msg1)
-                vel_msg2.twist.linear.x = 0
-                vel_msg2.twist.linear.y = 1
+                vel_msg2.twist.linear.y = 0
+                vel_msg2.twist.linear.x = -5
                 local_vel_pub2.publish(vel_msg2)
                 rate.sleep()
 
-            for i in range(150):
+            for i in range(Distance_x):
                 # Move in backward direcrion
                 rospy.loginfo("Backward ")
-                vel_msg0.twist.linear.x = -1
-                vel_msg0.twist.linear.y = 0
+                vel_msg0.twist.linear.y = 5
+                vel_msg0.twist.linear.x = 0
                 local_vel_pub0.publish(vel_msg0)
-                vel_msg1.twist.linear.x = -1
-                vel_msg1.twist.linear.y = 0
+                vel_msg1.twist.linear.y = 5
+                vel_msg1.twist.linear.x = 0
                 local_vel_pub1.publish(vel_msg1)
-                vel_msg2.twist.linear.x = -1
-                vel_msg2.twist.linear.y = 0
+                vel_msg2.twist.linear.y = 5
+                vel_msg2.twist.linear.x = 0
                 local_vel_pub2.publish(vel_msg2)
                 rate.sleep()
 
-            for i in range(150):
+            for i in range(Distance_y):
                 # Move in left direcrion
                 rospy.loginfo("Left ")
-                vel_msg0.twist.linear.x = 0
-                vel_msg0.twist.linear.y = -1
+                vel_msg0.twist.linear.y = 0
+                vel_msg0.twist.linear.x = 5
                 local_vel_pub0.publish(vel_msg0)
-                vel_msg1.twist.linear.x = 0
-                vel_msg1.twist.linear.y = -1
+                vel_msg1.twist.linear.y = 0
+                vel_msg1.twist.linear.x = 5
                 local_vel_pub1.publish(vel_msg1)
-                vel_msg2.twist.linear.x = 0
-                vel_msg2.twist.linear.y = -1
+                vel_msg2.twist.linear.y = 0
+                vel_msg2.twist.linear.x = 5
                 local_vel_pub2.publish(vel_msg2)
                 rate.sleep()
 
@@ -379,7 +381,7 @@ if __name__ == "__main__":
                 #Uav0 Landing
                 if z_val0 > 1.1:
                     vel_msg0.twist.linear.z = -0.3
-                    vel_msg0.twist.linear.x = y_error0* 0.2
+                    vel_msg0.twist.linear.x = y_error0* 0.3
                     vel_msg0.twist.linear.y = -x_error0* 0.15
                 else:
                     vel_msg0.twist.linear.z = -0.3
@@ -394,7 +396,7 @@ if __name__ == "__main__":
                 #Uav1 Landing
                 if z_val1 > 1.1:
                     vel_msg1.twist.linear.z = -0.3
-                    vel_msg1.twist.linear.x = y_error1* 0.2
+                    vel_msg1.twist.linear.x = y_error1* 0.3
                     vel_msg1.twist.linear.y = -x_error1* 0.15
                 else:
                     vel_msg1.twist.linear.z = -0.3
@@ -405,7 +407,7 @@ if __name__ == "__main__":
                 #Uav2 Landing
                 if z_val2 > 1.1:
                     vel_msg2.twist.linear.z = -0.3
-                    vel_msg2.twist.linear.x = y_error2* 0.2
+                    vel_msg2.twist.linear.x = y_error2* 0.3
                     vel_msg2.twist.linear.y = -x_error2* 0.15
                 else:
                     vel_msg2.twist.linear.z = -0.3
